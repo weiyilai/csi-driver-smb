@@ -44,7 +44,7 @@ spec:
             - "--csi-address=$(ADDRESS)"
             - "--leader-election"
             - "--leader-election-namespace=kube-system"
-            - "--feature-gates=HonorPVReclaimPolicy=true"
+            - "--feature-gates=HonorPVReclaimPolicy=true,VolumeAttributesClass=false"
             - "--extra-create-metadata=true"
             - "--retry-interval-max=30m"
           env:
@@ -72,6 +72,7 @@ spec:
             - "-leader-election"
             - "--leader-election-namespace=kube-system"
             - '-handle-volume-inuse-error=false'
+            - '-feature-gates=VolumeAttributesClass=false'
           env:
             - name: ADDRESS
               value: /csi/csi.sock
