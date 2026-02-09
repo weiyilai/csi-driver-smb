@@ -59,7 +59,7 @@ spec:
           args:
             - --csi-address=/csi/csi.sock
             - --probe-timeout=3s
-            - --http-endpoint=localhost:{{ .Values.node.livenessProbe.healthPort }}
+            - --http-endpoint=127.0.0.1:{{ .Values.node.livenessProbe.healthPort }}
             - --v=2
           imagePullPolicy: {{ .Values.image.livenessProbe.pullPolicy }}
           resources: {{- toYaml .Values.linux.resources.livenessProbe | nindent 12 }}
@@ -111,7 +111,6 @@ spec:
           livenessProbe:
             failureThreshold: 5
             httpGet:
-              host: localhost
               path: /healthz
               port: {{ .Values.node.livenessProbe.healthPort }}
             initialDelaySeconds: 30
